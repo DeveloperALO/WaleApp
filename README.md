@@ -1,0 +1,2 @@
+# WaleApp
+ Aplicacion de trivias
