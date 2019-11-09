@@ -1,6 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Wale App</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment" tools:ignore="ExtraTranslation">Hello blank fragment</string>
+    <string name="titulo_login">Iniciar sesión con tu cuenta</string>
+    <string name="btn_iniciar_sesion">Iniciar sesion</string>
+    <string name="btn_registro">Crear cuenta nueva</string>
+    <string name="btn_login_registro">iniciar sesion o crear cuenta</string>
+    <string name="btn_iniciar_cronometro">Comenzar</string>
+
+    <string name="hint_correo">Correo electrónico</string>
+    <string name="hint_nombre">Nombre completo</string>
+    <string name="hint_telefono">Teléfono</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="hint_confirmar">Confirmar contraseña</string>
+    <string name="btn_guardar">Crear cuenta</string>
+    <string name="btn_salir_reto">Salir del reto</string>
+    <string name="tx_inicio_cronometro">5 Seg.</string>
+
+
 </resources>

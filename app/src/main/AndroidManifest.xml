@@ -3,12 +3,25 @@
     package="com.aur3liux.waleapp">
 
     <application
+        android:name=".AppWale"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Preguntas"
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Cronometro"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".Registro"
+            android:parentActivityName=".Login"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Login"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
