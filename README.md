@@ -1,5 +1,4 @@
-# WaleApp
- Aplicacion de trivias
+WaleApp
 El nombre del juego se deriva a la palabra maya wale´ que significa “Quizás, talvez”.
 Objetivo:
 Presentar retos preguntas cuyas respuestas pueden actuarlas mediante mímicas, contestarlas con verdadero/falso o escoger entre opciones múltiples con temas académicos para fomentar el conocimiento entre estudiantes de nivel medio superior de manera divertida.
