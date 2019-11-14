@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "807769631805",
+    "firebase_url": "https://waleapp-6b308.firebaseio.com",
+    "project_id": "waleapp-6b308",
+    "storage_bucket": "waleapp-6b308.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:807769631805:android:017215aa39593043dc8e54",
+        "android_client_info": {
+          "package_name": "com.aur3liux.waleapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "807769631805-7879n12kf8khncditdksp46tv715v4n0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz7DYrwNSRddFMqYkxnG_T9K_VTIZTFW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "807769631805-7879n12kf8khncditdksp46tv715v4n0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
