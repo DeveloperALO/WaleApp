@@ -16,5 +16,8 @@
     <string name="btn_salir_reto">Salir del reto</string>
     <string name="tx_inicio_cronometro">5 Seg.</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

@@ -15,6 +15,7 @@ class AppWale: Application() {
         val tbItemsGrupal = "itemsGrupal"
         val tbReto = "reto"
         val version = 1
+        var tema = ""
 
     }
 

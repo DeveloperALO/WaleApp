@@ -3,18 +3,16 @@ package com.aur3liux.waleapp
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import com.aur3liux.waleapp.model.AdminDb
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.android.synthetic.main.fragment_single.*
-import kotlinx.android.synthetic.main.fragment_single.view.*
+import kotlinx.android.synthetic.main.fragment_mimicas.view.*
 
-/**
- * A simple [Fragment] subclass.
- */
-class FragmentSingle : Fragment() {
+
+class Fragment_mimicas : Fragment() {
 
     lateinit var mView: View
     var testSesion: Boolean = false
@@ -24,9 +22,10 @@ class FragmentSingle : Fragment() {
     val dbFireStore = FirebaseFirestore.getInstance()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mView = inflater.inflate(R.layout.fragment_single, container, false)
+        mView = inflater.inflate(R.layout.fragment_mimicas, container, false)
 
         testSesion = adminDb.testUsuario()
+        //Si ya inicio sesion
         if(testSesion){
             setHasOptionsMenu(true)
             muestraPantallaPrincipal()
@@ -38,16 +37,24 @@ class FragmentSingle : Fragment() {
         abrirlogin()
         return mView
     }
-
     fun crearListaSnapShot(){
-        dbFireStore.collection("Individual").get()
+        dbFireStore.collection("Mimicas")
+            .get()
             .addOnSuccessListener{result ->
                 adapter.clear()
                 for(dc in result){
                     temas.add(dc.id)
                 }
-                listSingle.adapter = adapter
+                mView.listMimicas.adapter = adapter
                 adapter.setNotifyOnChange(true)
+
+                //Al seleccionar un elemento de la lista nos lleve al cronometro
+                mView.listMimicas.onItemClickListener = AdapterView.OnItemClickListener{adapterView, view, i, l ->
+                    //Guardamos el tema en una variable global para su posterior consulta en la nube
+                    AppWale.tema = temas.get(i).toString()
+                    val iCronometro = Intent(AppWale.context,Cronometro::class.java)
+                    startActivity(iCronometro)
+                }
             }
             .addOnFailureListener{e ->
                 Toast.makeText(AppWale.context,"Error al descargar los datos", Toast.LENGTH_SHORT).show()
@@ -57,7 +64,7 @@ class FragmentSingle : Fragment() {
 
     //Crear lista
     fun crearListaRealTime(){
-        dbFireStore.collection("Individual").addSnapshotListener{snapShop, e ->
+        dbFireStore.collection("Mimicas").addSnapshotListener{snapShop, e ->
             if(e != null){
                 Toast.makeText(AppWale.context,"No se pudo conectar a la base de datos", Toast.LENGTH_SHORT).show()
                 return@addSnapshotListener
@@ -66,7 +73,7 @@ class FragmentSingle : Fragment() {
             for(dc in snapShop!!.documentChanges){
                 temas.add(dc.document.id)
             }
-            mView.listSingle.adapter = adapter
+            mView.listMimicas.adapter = adapter
         }
     }
 
@@ -82,13 +89,13 @@ class FragmentSingle : Fragment() {
 
     //Si hay usuario y por lo tanto ya hay un inicio de sesion
     fun muestraPantallaPrincipal(){
-        mView.listSingle.visibility = View.VISIBLE
+        mView.listMimicas.visibility = View.VISIBLE
         mView.btnLoginRegistroInicial.visibility = View.INVISIBLE
     }
 
     //No hay usuario y por lo tanto no ha iniciado sesion
     fun ocultaPantallaPrincipal(){
-        mView.listSingle.visibility = View.INVISIBLE
+        mView.listMimicas.visibility = View.INVISIBLE
         mView.btnLoginRegistroInicial.visibility = View.VISIBLE
     }
 
@@ -107,3 +114,4 @@ class FragmentSingle : Fragment() {
 
     }
 }
+

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-
     <item
-        android:id="@+id/action_single"
-        android:icon="@drawable/ic_single"
-        android:title="Individual"
-        app:showAsAction="always" />
+        android:id="@+id/action_mimicas"
+        android:icon="@drawable/ic_mimicas"
+        android:title="Dilo con mímicas" />
     <item
-        android:id="@+id/action_group"
-        android:icon="@drawable/ic_group"
-        android:title="En grupo"
-        app:showAsAction="always" />
+        android:id="@+id/action_pistas"
+        android:icon="@drawable/ic_pistas"
+        android:title="Dilo con pistas" />
+    <item
+        android:id="@+id/action_preguntas"
+        android:icon="@drawable/ic_preguntas"
+        android:title="Haz preguntas" />
 </menu>
