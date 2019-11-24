@@ -26,4 +26,19 @@ class Contract {
             val MODALIDAD = "modalidad"
         }
     }
+
+    class TemasG:BaseColumns{
+        companion object{
+            val TEMA = "tema"
+            val COLLECTION = "collection"
+        }
+    }
+
+    class ItemsG:BaseColumns{
+        companion object{
+            val ID = "id"
+            val CONTENIDO = "contenido"
+            val TEMA = "tema"
+        }
+    }
 }

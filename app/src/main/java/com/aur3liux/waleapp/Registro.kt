@@ -3,19 +3,19 @@ package com.aur3liux.waleapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.MenuItem
 import android.widget.Toast
 import com.aur3liux.waleapp.model.AdminDb
 import com.aur3liux.waleapp.model.Usuario
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.txCorreo
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_registro.*
-import java.util.regex.Pattern
 
 class Registro : AppCompatActivity() {
 
     val adminDb = AdminDb()
+    val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,19 +41,56 @@ class Registro : AppCompatActivity() {
     }
 
     fun crearUsuario(){
+        txNombre.setText("Aurelio")
+        txCorreo.setText("aureliux@hotmail.com")
+        txTelefono.setText("9811125246")
+        txPassword.setText("12345678")
+        txPasswordConfirm.setText("12345678")
         btnGuardar.setOnClickListener(){
-            if(capturCorrecta()){
+            if(capturCorrecta()) {
                 //Creamos el objeto de la clase Usario
-                val user = Usuario(txCorreo.text.toString(),
+                val user = Usuario(
+                    txCorreo.text.toString(),
                     txTelefono.text.toString(),
                     txNombre.text.toString(),
-                    txPassword.text.toString())
-                adminDb.insertUsuario(user)
-                //Si no hay error abrimos la pantalla principal
-                val iPrincipal = Intent(applicationContext,MainActivity::class.java)
-                startActivity(iPrincipal)
-            }
+                    txPassword.text.toString()
+                )
 
+                //Guardamos en la nube
+                val usuarioHash: HashMap<String, String> = hashMapOf(
+                    "Nombre" to user.nombre,
+                    "Telefono" to user.telefono,
+                    "Password" to user.pwd
+                )
+
+                //Verificar que el correo no existe en la nube
+                db.collection("Usuarios").document(user.correo)
+                    .get().addOnSuccessListener { document ->
+                        if(document.exists()){
+                            Toast.makeText(applicationContext,"El correo ya existe",Toast.LENGTH_SHORT).show()
+                        }
+                        else{
+                            //Guardamos el usuario
+                            db.collection("Usuarios").document(user.correo)
+                                .set(usuarioHash).addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        //Guardamos localmente en SQLite
+                                        adminDb.insertUsuario(user)
+                                        //Si no hay error abrimos la pantalla principal
+                                        val iPrincipal = Intent(applicationContext, MainActivity::class.java)
+                                        startActivity(iPrincipal)
+                                    } else {
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Error al guardar",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                                }
+                        }
+                }
+
+            }
         }
     }
 

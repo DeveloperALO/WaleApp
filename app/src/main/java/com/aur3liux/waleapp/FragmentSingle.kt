@@ -106,6 +106,4 @@ class FragmentSingle : Fragment() {
         }
 
     }
-
-
 }

@@ -11,6 +11,8 @@ class AppWale: Application() {
         lateinit var DB: DbInit
         val DB_NAME = "Wale.db"
         val tbUsario = "usuario"
+        val tbTemasGrupal = "temasGrupal"
+        val tbItemsGrupal = "itemsGrupal"
         val tbReto = "reto"
         val version = 1
 
